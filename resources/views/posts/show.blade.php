@@ -47,21 +47,7 @@
                 </div>
             </div>
             <section class="col-span-8 col-start-5 mt-10 space-y-8">
-                <x-panel>
-                    <form action="#" method="post">
-                        @csrf
-                        <header class="flex items-center">
-                            <img src="https://i.pravatar.cc/60?u={{ auth()->user()->id }}" alt="" width="40" height="40"
-                                class="rounded-full">
-                                <textarea name="body" class="ml-5 border border-gray-500 rounded-2xl w-full text-sm focus:outline-none focus:ring text-gray-500 " id="" rows="5" placeholder="
-                                
-                                Quick, think to say something!"></textarea>
-                        </header>
-                        <div class="flex justify-end mt-6 pt-6 border-t border-gray-200">
-                            <button type="submit" class="bg-blue-500 text-white uppercase font-semibold text-xs py-2 px-10 rounded-xl hover:bg-blue-600">Post</button>
-                        </div>
-                    </form>
-                </x-panel>
+                @include('posts._add-comment-form')
                 @foreach ($post->comments as $comment)
                     <x-comment :comment="$comment" />
                 @endforeach
