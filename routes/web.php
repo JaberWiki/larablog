@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 
+Route::get('/admin/posts/create', [PostController::class, 'create'])->middleware('admin');
+Route::post('/admin/posts', [PostController::class, 'store'])->middleware('admin');
+
+Route::post('/newsletter', NewsletterController::class);
+
 Route::get('/', [PostController::class, 'index'])->name('posts');
 
 Route::get('post/{post:slug}', [PostController::class, 'show']);
@@ -25,5 +30,3 @@ Route::post('/register', [RegisterController::class, 'store'])->middleware('gues
 Route::get('/login', [SessionsController::class, 'create'])->middleware('guest');
 Route::post('/login', [SessionsController::class, 'store'])->middleware('guest');
 Route::post('/logout', [SessionsController::class, 'destroy'])->middleware('auth');
-
-Route::post('/newsletter', NewsletterController::class);

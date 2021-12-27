@@ -2,7 +2,6 @@
 namespace App\Services;
 
 use MailchimpMarketing\ApiClient;
-use phpDocumentor\Reflection\Types\Null_;
 
 class Newsletter
 {
