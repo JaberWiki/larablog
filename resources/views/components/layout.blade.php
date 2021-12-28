@@ -1,6 +1,6 @@
 <!doctype html>
 
-<title>Laravel From Scratch Blog</title>
+<title>Jaber's Blog</title>
 <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -23,7 +23,7 @@
 
             <div class="mt-8 md:mt-0 flex items-center">
                 @auth
-                    <span class="text-xs font-bold uppercase">Welcome back, {{ auth()->user()->username }}</span>
+                    <span class="text-xs font-bold uppercase">Welcome back, &nbsp;{{ auth()->user()->username }}</span>
                     <form action="/logout" method="post" class="text-xs font-semibold text-blue-500 ml-6">
                         @csrf
                         <button type="submit">Log Out</button>

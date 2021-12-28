@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -16,16 +17,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::truncate();
-        Post::truncate();
-        Category::truncate();
+        // User::truncate();
+        // Post::truncate();
+        // Category::truncate();
 
         //custom username provided
-        // $user = User::factory()->create([
-        //     'name' => 'Jaber Bro'
-        // ]);
+        $user = User::factory()->create([
+            'name' => 'Jaber Bro'
+        ]);
         Post::factory(10)->create([
-            // 'user_id' => $user->id
-        ]);        
+            'user_id' => 1
+        ]); 
+        Comment::factory()->create([
+            'user_id' => 1,
+            'post_id' => 1
+        ]);       
     }
 }

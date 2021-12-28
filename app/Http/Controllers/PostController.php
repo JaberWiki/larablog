@@ -30,19 +30,20 @@ class PostController extends Controller
         }
         return view('posts.create');
     }
-    public function store()
+    public function store(Request $request)
     {
         // $slugUnified = Str::slug($request->get('title'));
         // dd($attributes['slug']);
         $attributes = request()->validate([
             'title' => 'required',
+            'image' => 'required|image',
             'excerpt' => 'required',
             'slug' => ['required', Rule::unique('posts', 'slug')],
             'body' => 'required',
             'category_id' => ['required', Rule::exists('categories', 'id')]
-        ]);
+        ]);        
         $attributes['user_id'] = auth()->id();
-
+        $attributes['image'] = request()->file('image')->store('images');
         Post::create($attributes);
         return redirect('/');
     }
