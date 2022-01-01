@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 
-Route::get('/admin/posts/create', [PostController::class, 'create'])->middleware('admin');
+Route::get('/admin/posts/create', [PostController::class, 'create'])->name('newPost')->middleware('admin');
 Route::post('/admin/posts', [PostController::class, 'store'])->middleware('admin');
 
 Route::post('/newsletter', NewsletterController::class);

@@ -25,11 +25,12 @@ class SessionsController extends Controller
             ]);
         }
         session()->regenerate();
-        return redirect('/')->with('success', "Wlcome back!");
+        return redirect('/')->with('success', "Welcome back! " . ucwords(auth()->user()->name));
     }
     public function destroy()
     {
+        $user = auth()->user()->name;
         Auth::logout();
-        return redirect('/')->with('success', 'See you soon, Goodbye!');
+        return redirect('/')->with('success', 'See you soon, Goodbye! ' . $user);
     }
 }
