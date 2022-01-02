@@ -15,8 +15,8 @@
                     <aside class="w-48 pt-4">
                         <ul>
                             <li>
-                                <a href="{{ route('newPost') }}"
-                                    class="{{ request()->is('admin/dashboard') ? 'text-blue-500' : '' }}">Dashboard</a>
+                                <a href="{{ route('adminPosts') }}"
+                                    class="{{ request()->routeIs('adminPosts') ? 'text-blue-500' : '' }}">All Posts</a>
                             </li>
                             <li>
                                 <a href="{{ route('newPost') }}"

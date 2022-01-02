@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PostCommentController;
 use App\Http\Controllers\PostController;
@@ -13,12 +14,15 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 
-Route::get('/admin/posts/create', [PostController::class, 'create'])->name('newPost')->middleware('admin');
-Route::post('/admin/posts', [PostController::class, 'store'])->middleware('admin');
-
-Route::post('/newsletter', NewsletterController::class);
 
 Route::get('/', [PostController::class, 'index'])->name('posts');
+Route::post('/newsletter', NewsletterController::class);
+
+// Admin Post
+Route::get('/admin/posts/create', [AdminPostController::class, 'create'])->name('newPost')->middleware('admin');
+Route::post('/admin/posts', [AdminPostController::class, 'store'])->middleware('admin');
+Route::get('/admin/posts', [AdminPostController::class, 'index'])->name('adminPosts')->middleware('admin');
+Route::get('/admin/posts/{post}/edit', [AdminPostController::class, 'edit'])->middleware('admin');
 
 Route::get('post/{post:slug}', [PostController::class, 'show']);
 Route::post('posts/{post:slug}/comments', [PostCommentController::class, 'store']);

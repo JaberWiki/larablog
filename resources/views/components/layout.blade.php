@@ -28,7 +28,7 @@
                             <button class="text-xs font-bold uppercase">Welcome back,
                                 &nbsp;{{ auth()->user()->username }}</button>
                         </x-slot>
-                        <x-dropdown-item href='/admin/dashboard'>Dashboard</x-dropdown-item>
+                        <x-dropdown-item href="{{ route('adminPosts') }}" :active="request()->routeIs('adminPosts')">All Posts</x-dropdown-item>
                         <x-dropdown-item href="{{ route('newPost') }}" :active="request()->routeIs('newPost')">New post
                         </x-dropdown-item>
                         <x-dropdown-item href="#" x-data="{}"
