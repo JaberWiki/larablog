@@ -22,13 +22,26 @@
                     @foreach ($posts as $post)
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-900">{{ Str::words($post->title, '5') }}</div>
+                                <div class="text-sm text-indigo-600 hover:text-indigo-900 hover:underline flex">
+                                    <a href="{{ url('post/' . $post->slug) }}" class="mr-4">{{ Str::words($post->title, '5') }}</a>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+                                      </svg>
+                                </div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="text-sm text-gray-900">Publish</div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                <a href="/admin/posts/{{ $post->id }}/edit" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                <div class="flex">
+                                    <a href="/admin/posts/{{ $post->id }}/edit"
+                                        class="text-indigo-600 hover:text-indigo-900 mr-2">Edit</a>
+                                    <form action="/admin/posts/{{ $post->id }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="text-xs text-gray-400" onclick="return confirm('Are you sure!')">Delete</button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                     @endforeach

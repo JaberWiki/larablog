@@ -2,11 +2,16 @@
     <x-setting :heading="'Edit Post: ' . $post->title">
         <x-panel>
             <div class="m-6">
-                <form class="mb-4" method="POST" action="/admin/posts" enctype="multipart/form-data">
+                <form class="mb-4" method="POST" action="/admin/posts/{{ $post->id }}" enctype="multipart/form-data">
                     @csrf
+                    @method('PATCH')
                     <x-form.input name='title' :value="old('title', $post->title)" />
                     <x-form.input name='slug' :value="old('slug', $post->slug)" />
-                    <x-form.input name='image' type='file' />
+                    <div class="flex">
+                        <x-form.input name='image' type='file' :value="old('image', $post->image)" class='my-10' />
+                            <img src="{{ asset('storage/' . $post->image) }}" alt="" class="rounded-xl mb-6 mx-auto ml-4"
+                                width="200px">
+                    </div>
                     <x-form.textarea name='excerpt'>{{ old('excerpt', $post->excerpt) }}</x-form.textarea>
                     <x-form.textarea name='body'>{{ old('body', $post->body) }}</x-form.textarea>
                     <x-form.field>
@@ -22,7 +27,7 @@
                         <x-form.error name="category_id" />
                     </x-form.field>
                     <x-form.field>
-                        <x-form.button name="publish" />
+                        <x-form.button name="update" />
                     </x-form.field>
                 </form>
                 <!-- seperator -->

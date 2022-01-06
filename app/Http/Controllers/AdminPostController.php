@@ -46,4 +46,27 @@ class AdminPostController extends Controller
     {
         return view('admin.posts.edit', compact('post'));
     }
+
+    public function update(Post $post)
+    {
+        $attributes = request()->validate([
+            'title' => 'required',
+            'image' => 'image',
+            'excerpt' => 'required',
+            'slug' => ['required', Rule::unique('posts', 'slug')->ignore($post->id)],
+            'body' => 'required',
+            'category_id' => ['required', Rule::exists('categories', 'id')]
+        ]);
+        if(request()->image){
+            $attributes['image'] = request()->file('image')->store('images');
+        }
+        $post->update($attributes);
+        return back()->with('success', 'Post updated!');
+    }
+
+    public function destroy(Post $post)
+    {
+        $post->delete();
+        return back()->with('success', 'Post deleted!');
+    }
 }
