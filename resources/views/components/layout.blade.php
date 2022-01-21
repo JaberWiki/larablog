@@ -28,9 +28,12 @@
                             <button class="text-xs font-bold uppercase">Welcome back,
                                 &nbsp;{{ auth()->user()->username }}</button>
                         </x-slot>
-                        <x-dropdown-item href="{{ route('adminPosts') }}" :active="request()->routeIs('adminPosts')">All Posts</x-dropdown-item>
-                        <x-dropdown-item href="{{ route('newPost') }}" :active="request()->routeIs('newPost')">New post
-                        </x-dropdown-item>
+                        @jaber
+                            <x-dropdown-item href="{{ url('admin/posts') }}" :active="request()->is('admin/posts')">
+                                Dashboard</x-dropdown-item>
+                            <x-dropdown-item href="{{ url('admin/posts/create') }}" :active="request()->is('admin/posts/create')">New post
+                            </x-dropdown-item>
+                        @endjaber
                         <x-dropdown-item href="#" x-data="{}"
                             @click.prevent="document.querySelector('#logout-form').submit()">Log out</x-dropdown-item>
                         <form action="/logout" method="post" id="logout-form" class="hidden">

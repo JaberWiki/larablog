@@ -15,11 +15,11 @@ class AdminsOnly
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
-    {
-        if(auth()->user()?->username != 'jaberphpdev'){
-            abort(Response::HTTP_FORBIDDEN);
-        }
-        return $next($request);
-    }
+    // public function handle(Request $request, Closure $next)
+    // {
+    //     if(auth()->user()?->username != 'jaberphpdev'){
+    //         abort(Response::HTTP_FORBIDDEN);
+    //     }
+    //     return $next($request);
+    // }
 }
